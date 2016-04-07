@@ -6,8 +6,8 @@ require "measures/version"
 Gem::Specification.new do |spec|
   spec.name          = "measures"
   spec.version       = Measures::VERSION
-  spec.authors       = ["Videos 2"]
-  spec.email         = ["videos2@corp.globo.com"]
+  spec.authors       = ["Marcelo Boeira", "Juan Ibiapina"]
+  spec.email         = ["me@marceloboeira.com", "juanibiapina@gmail.com"]
   spec.summary       = %q{Measures ruby client}
   spec.description   = %q{Measures ruby client}
   spec.homepage      = ""
