@@ -18,7 +18,7 @@ RSpec.describe Measures::Client do
 
   describe "message content" do
     let(:package) { receive(size) }
-    let(:data) { {  } }
+    let(:data) { { } }
     let(:size) { client.count("bar", data) }
 
     it "includes client" do
@@ -34,7 +34,7 @@ RSpec.describe Measures::Client do
     end
 
     context "with additional data" do
-      let(:data) { {"server" => "foo.bar" } }
+      let(:data) { { "server" => "foo.bar" } }
 
       it "includes data content" do
         expect(package).to include(data)

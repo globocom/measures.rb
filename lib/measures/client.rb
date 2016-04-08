@@ -1,5 +1,6 @@
 require "socket"
 require "json"
+require "benchmark"
 
 module Measures
   class Client
