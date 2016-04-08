@@ -34,3 +34,8 @@ measures.count("my_metric")
 # Sends metric with additional data
 measures.count("my_metric", { "foo" => "bar" })
 ```
+
+## Measures in other languages
+
+- [Python](https://github.com/globocom/measures)
+- [Go](https://github.com/scorphus/measures)  
