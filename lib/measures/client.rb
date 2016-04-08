@@ -11,19 +11,32 @@ module Measures
     end
 
     def count(metric, data = {})
-      message = {
-        "client" => @client,
-        "metric" => metric,
-        "count" => 1,
-      }
+      data.merge!({ "count" => 1 })
 
-      send(data.merge(message))
+      send(metric, data)
+    end
+
+    def time(metric, data = {}, &block)
+      elapsed_time = Benchmark.realtime do
+        yield if block_given?
+      end
+
+      data.merge!({ "time" => elapsed_time })
+
+      send(metric, data)
     end
 
     private
 
-    def send(data = {})
-      @socket.send(data.to_json, 0)
+    def send(metric, data = {})
+      default = {
+        "client" => @client,
+        "metric" => metric,
+      }
+
+      default.merge!(data)
+
+      @socket.send(default.to_json, 0)
     end
   end
 end

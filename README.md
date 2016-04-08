@@ -28,11 +28,23 @@ require "measures"
 # Creates the measure client instance
 measures = Measures::Client.new("my-app", "logstash.foo.bar", 30)
 
-# Sends metric
-measures.count("my_metric")
+# Sends count metric
+measures.count("my_count_metric")
 
-# Sends metric with additional data
-measures.count("my_metric", { "foo" => "bar" })
+# Sends count metric with additional data
+measures.count("my_count_metric", { "foo" => "bar" })
+
+# Sends time metric
+measures.time("my_time_metric") do
+  # Some long operations
+  sleep(10)
+end
+
+# Sends time metric with additional data
+measures.time("my_time_metric", { "foo" => "bar" }) do
+  # Some long operations
+  sleep(10)
+end
 ```
 
 ## Measures in other languages
