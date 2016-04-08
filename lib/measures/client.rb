@@ -17,8 +17,12 @@ module Measures
         "count" => 1,
       }
 
-      data = data.merge(message)
+      send(data.merge(message))
+    end
 
+    private
+
+    def send(data = {})
       @socket.send(data.to_json, 0)
     end
   end
