@@ -25,8 +25,11 @@ $ gem install measures
 ```ruby
 require "measures"
 
+# Creates the transport form (UDP/HTTP/...)
+transport = Measures::Transport::UDP.new("logstash.foo.bar", 30)
+
 # Creates the measure client instance
-measures = Measures::Client.new("my-app", "logstash.foo.bar", 30)
+measures = Measures::Client.new(transport, "my-app")
 
 # Sends count metric
 measures.count("my_count_metric")
