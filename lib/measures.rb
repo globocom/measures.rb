@@ -1,5 +1,6 @@
 require "measures/version"
-require "measures/transport/udp"
 require "measures/client"
+require "measures/transport/udp"
+require "measures/transport/http"
 
 module Measures; end
