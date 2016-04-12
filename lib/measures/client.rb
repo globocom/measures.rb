@@ -1,13 +1,11 @@
-require "socket"
 require "json"
 require "benchmark"
 
 module Measures
   class Client
-    def initialize(client, host, port)
+    def initialize(transport, client)
       @client = client
-      @socket = UDPSocket.new
-      @socket.connect(host, port)
+      @transport = transport
     end
 
     def count(metric, data = {})
@@ -36,7 +34,7 @@ module Measures
 
       default.merge!(data)
 
-      @socket.send(default.to_json, 0)
+      @transport.send(default.to_json)
     end
   end
 end
