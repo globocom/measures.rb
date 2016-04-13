@@ -5,9 +5,10 @@ require "uri"
 module Measures
   module Transport
     class HTTP
-      def initialize(host, port)
+      def initialize(host, port = 80, url = "/")
         @host = host
         @port = port
+        @url = url
       end
 
       def send(data)
@@ -18,7 +19,7 @@ module Measures
         end
 
         client.post do |req|
-          req.url "/"
+          req.url @url
           req.headers["Content-Type"] = "application/json"
           req.body = data
         end
