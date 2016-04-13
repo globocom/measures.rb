@@ -15,6 +15,7 @@ module Measures
         client = Faraday.new(url: URI::HTTP.build(host: @host, port: @port)) do |c|
           c.request :json
 
+          c.response :raise_error
           c.adapter Faraday.default_adapter
         end
 
