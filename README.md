@@ -29,7 +29,7 @@ require "measures"
 transport = Measures::Transports::UDP.new("logstash.foo.bar", 30)
 
 # Creates the measure client instance
-measures = Measures::Client.new(transport, "my-app")
+measures = Measures::Client.new(transport, "my-app", "my-team")
 
 # Sends count metric
 measures.count("my_count_metric")
