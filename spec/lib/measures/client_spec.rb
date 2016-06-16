@@ -11,7 +11,9 @@ end
 
 RSpec.describe Measures::Client do
   let(:transport) { double(:transport) }
-  let(:client) { Measures::Client.new(transport, "foo") }
+  let(:client_name) { "foo" }
+  let(:owner_name) { "bar" }
+  let(:client) { Measures::Client.new(transport, client_name, owner_name) }
 
   before do
     allow(transport).to receive(:send)
@@ -20,17 +22,22 @@ RSpec.describe Measures::Client do
   describe "count" do
     describe "message content" do
       let(:data) { {} }
+      let(:metric_name) { "bar" }
 
       after(:each) do
-        client.count("bar", data)
+        client.count(metric_name, data)
+      end
+
+      it "includes owner" do
+        expect(transport).to receive_data_including("owner" => owner_name)
       end
 
       it "includes client" do
-        expect(transport).to receive_data_including("client" => "foo")
+        expect(transport).to receive_data_including("client" => client_name)
       end
 
       it "includes metric" do
-        expect(transport).to receive_data_including("metric" => "bar")
+        expect(transport).to receive_data_including("metric" => metric_name)
       end
 
       it "includes count" do

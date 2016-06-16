@@ -3,9 +3,10 @@ require "benchmark"
 
 module Measures
   class Client
-    def initialize(transport, client)
+    def initialize(transport, client, owner)
       @client = client
       @transport = transport
+      @owner = owner
     end
 
     def count(metric, data = {})
@@ -28,8 +29,9 @@ module Measures
 
     def send(metric, data = {})
       default = {
+        "owner" => @owner,
         "client" => @client,
-        "metric" => metric,
+        "metric" => metric
       }
 
       default.merge!(data)
