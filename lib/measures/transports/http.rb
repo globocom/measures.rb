@@ -3,7 +3,7 @@ require "faraday_middleware"
 require "uri"
 
 module Measures
-  module Transport
+  module Transports
     class HTTP
       def initialize(host, port = 80, url = "/")
         @host = host

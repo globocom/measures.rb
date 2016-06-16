@@ -1,6 +1,6 @@
 require "webmock/rspec"
 
-RSpec.describe Measures::Transport::HTTP do
+RSpec.describe Measures::Transports::HTTP do
   let(:host) { "host.com" }
   let(:url) { "/path" }
   let(:port) { 3132 }
@@ -21,7 +21,7 @@ RSpec.describe Measures::Transport::HTTP do
   end
 
   context "with host and port" do
-    let(:http) { Measures::Transport::HTTP.new(host, port) }
+    let(:http) { Measures::Transports::HTTP.new(host, port) }
 
     it "sends data over http" do
       http.send(data)
@@ -31,7 +31,7 @@ RSpec.describe Measures::Transport::HTTP do
   end
 
   context "with host, port and url" do
-    let(:http) { Measures::Transport::HTTP.new(host, port, url) }
+    let(:http) { Measures::Transports::HTTP.new(host, port, url) }
 
     it "sends data over http" do
       http.send(data)

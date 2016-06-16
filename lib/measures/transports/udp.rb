@@ -1,7 +1,7 @@
 require "socket"
 
 module Measures
-  module Transport
+  module Transports
     class UDP
       def initialize(host, port)
         @socket = UDPSocket.new

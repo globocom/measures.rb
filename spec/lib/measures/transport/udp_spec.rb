@@ -1,10 +1,10 @@
 require "spec_helper"
 
-RSpec.describe Measures::Transport::UDP do
+RSpec.describe Measures::Transports::UDP do
   let(:host) { "localhost" }
   let(:port) { 6000 + rand(999) }
   let!(:server) { UDPSocket.new }
-  let(:transport) { Measures::Transport::UDP.new(host, port) }
+  let(:transport) { Measures::Transports::UDP.new(host, port) }
 
   def read(size)
     server.recvfrom(size)[0]
