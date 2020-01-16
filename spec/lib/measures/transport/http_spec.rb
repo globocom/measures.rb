@@ -5,6 +5,8 @@ RSpec.describe Measures::Transports::HTTP do
   let(:url) { "/path" }
   let(:port) { 3132 }
   let(:data) { "some_data" }
+  let(:open_timeout) { 20 }
+  let(:timeout) { 30 }
 
   before do
     stub_request(:post, "http://host.com:3132").
@@ -37,6 +39,18 @@ RSpec.describe Measures::Transports::HTTP do
       http.send(data)
 
       expect(a_request(:post, "http://host.com:3132/path")).to have_been_made.once
+    end
+  end
+
+  context "with open_timeout and timeout" do
+    let(:http) { Measures::Transports::HTTP.new(host, port, url, open_timeout, timeout) }
+
+    it "sets open_timeout option" do
+      expect(http.client.options.open_timeout).to eq(20)
+    end
+
+    it "sets timeout option" do
+      expect(http.client.options.timeout).to eq(30)
     end
   end
 end
